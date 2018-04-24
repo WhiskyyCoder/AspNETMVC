@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simple blog by Jan Domański">
+    <meta name="author" content="s14038">
+    <title>Simple blog - @ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/favicon.ico" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                @Html.ActionLink("Simple blog", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="@ViewBag.Active"> @Html.ActionLink("Dodaj wpis", "Add", "Post", null, null)  </li>
+                <li class="@ViewBag.Active2"> @Html.ActionLink("Moje wpisy", "Manage", "Post", null, null)  </li>
+                @if (Session["userid"] != null)
+                {
+                    <li class="@ViewBag.Active3"> @Html.ActionLink("Zmień hasło", "Password", "Profile", null, null)  </li>
+                }
+            </ul>
+            @if (Session["userid"] != null)
+            {
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("(Zalogowany jako: " + Session["user"] + ") Wyloguj sie", "Logout", "Login", null, null)</li>
+                </ul>
+            }
+        </div>
+    </nav>
+
+
+    <div class="container">
+
+        @RenderBody()
+
+        <hr>
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; @DateTime.UtcNow.Year Jan Domański</p>
+                </div>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+</body>
+
+</html>

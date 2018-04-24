@@ -1,0 +1,53 @@
+﻿@model SimpleBlog.DAO.Post
+@{
+    ViewBag.Title = "Informacje szczegółowe postu";
+    Layout = "~/Views/Share/_Layout_Main.cshtml";
+    ViewBag.Active = "";
+    ViewBag.Active2 = "";
+}
+<div class="container">
+
+    <div class="row">
+
+
+        <div class="col-md-8">
+
+
+            <h2>
+                @Model.Title
+            </h2>
+
+            <hr>
+
+            <img class="img-responsive" src="@Model.Picture" alt="">
+            <hr>
+            <p>@Html.Raw(Model.Content)</p>
+
+
+            <hr>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="well">
+                <h3><span class="glyphicon glyphicon-info-sign"></span>Informacje o wpisie :</h3>
+                <div class="cointainer">
+                    <ul class="list-unstyled">
+                        <li>
+                            <p><span class="glyphicon glyphicon-time"></span> Zamieszczono: @Model.CreatedAt.Value.ToLongDateString()</p>
+                        </li>
+                        <li>
+                            <p><span class="glyphicon glyphicon-user"></span> Autor: @Model.Author.Username </p>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Poprawnie dodane";
+    Layout = "~/Views/Share/_Layout_Main.cshtml";
+}
+<div class="content">
+    @if (@TempData["MessageSuccess"]!=null) {
+    <h2>@TempData["MessageSuccess"]</h2>
+    }
+ @Html.ActionLink("Powrót do strony głównej", "Index", "Home", null, new { @class = "btn btn-success" })
+</div>
+
+

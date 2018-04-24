@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Edytuj post";
+    Layout = "~/Views/Share/_Layout_Main.cshtml";
+}
+
+<div class="container">
+@model SimpleBlog.DAO.Post
+    <div class="row">
+
+        <h1>Dodaj wpis</h1>
+        <hr>
+        <div class="col-md-8">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.Label("Tytuł:")
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control",@value= @Model.Title, @placeholder = "Podaj tytuł" })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @style="color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Aktualne zdjęcie:")
+                    <img src="@Model.Picture" height="40"/>
+                    <br />
+                    @Html.Label("Zdjęcie:")
+                    @Html.TextBoxFor(model => model.Picture, new { @class = "form-control", @value = @Model.Picture, @placeholder = "Podaj adres zdjecia" })
+                    @Html.ValidationMessageFor(model => model.Picture, "", new { @style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Treść:")
+                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @value = @Model.Content, @placeholder = "Podaj adres zdjecia" })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @style = "color:red" })
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Edytuj</button>
+            }
+        </div>
+
+
+
+    </div>
+
+
+    <hr>
+
+
+
+</div>
+<script src="~/Content/Scripts/tinymce/tinymce.min.js"></script>
+<script src="~/Content/Scripts/init.js"></script>
+

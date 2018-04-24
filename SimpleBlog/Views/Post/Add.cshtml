@@ -1,0 +1,58 @@
+﻿
+@model SimpleBlog.DAO.Post
+
+@{
+    ViewBag.Title = "Dodaj post";
+    ViewBag.Active = "active";
+    Layout = "~/Views/Share/_Layout_Main.cshtml";
+}
+
+
+
+<div class="container">
+
+    <div class="row">
+        
+        <h1>Dodaj wpis</h1>
+        <hr>
+        <div class="col-md-8">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.Label("Podaj tytuł wpisu:")
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "Podaj tytuł" })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Podaj adres zdjęcia:")
+                    @Html.TextBoxFor(model => model.Picture, new { @class = "form-control", @placeholder = "Podaj adres zdjecia" })
+                    @Html.ValidationMessageFor(model => model.Picture, "", new { @style = "color:red" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Podaj treść wpisu:")
+                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @placeholder = "Podaj adres zdjecia" })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @style = "color:red" })
+                </div>
+
+
+            
+
+                <button type="submit" class="btn btn-primary">Wyślij</button>
+            }
+        </div>
+
+
+       
+        </div>
+  
+
+    <hr>
+
+        
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/Content/Scripts/tinymce/tinymce.min.js"></script>
+<script src="~/Content/Scripts/init.js"></script>

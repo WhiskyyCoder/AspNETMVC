@@ -1,0 +1,32 @@
+﻿@model IList<SimpleBlog.DAO.Post>
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Share/_Layout_Main.cshtml";
+    ViewBag.Active2 = "active";
+    
+}
+
+<div class="containter">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>Tytuł</th>
+                <th>Data stworzenia</th>
+                <th>Data modyfikacji</th>
+                <th>Akcje</th>
+            </tr>
+            @foreach (var row in Model ){
+            <tr>
+                <td>@row.Title</td>
+                <td>@row.CreatedAt.Value.ToShortDateString()</td>
+                <td>@row.ModifiedAt.Value.ToShortDateString()</td>
+                <td>@Html.ActionLink("Usuń", "Remove", "Post", new { pageid=@row.IdPost}, null) | @Html.ActionLink("Edytuj", "Edit", "Post", new { pageid=@row.IdPost}, null)</td>
+            </tr>
+            }
+         </table>
+
+        </div>
+
+
+    </div>
+

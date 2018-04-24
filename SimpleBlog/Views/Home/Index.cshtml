@@ -1,0 +1,72 @@
+﻿@model SimpleBlog.Views.Home.IndexViewModel
+
+@{
+
+    Layout = "~/Views/Share/_Layout_Main.cshtml";
+    ViewBag.Title = "Strona główna";
+    ViewBag.Active = "";
+
+}
+
+
+
+<div class="row">
+
+
+    <div class="col-md-8">
+        @foreach (var post in Model.Last5Posts)
+        {      <h2>
+            @post.Title
+        </h2>
+            <p class="lead">
+                przez @Html.ActionLink(@post.Author.Username, "Index", "Author", new { name = @post.Author.Username }, null)
+            </p>
+                <p><span class="glyphicon glyphicon-time"></span> Opublikowano : @post.CreatedAt.Value.ToLongDateString()</p>
+                <hr>
+                <img class="img-responsive" src="@post.Picture" alt="">
+                <hr>
+                <p>@Html.Raw(Model.TextShort(post.Content))</p>
+                @Html.ActionLink("Czytaj więcej", "More", "Post", new { pageid = @post.IdPost }, new { @class = "btn btn-primary" })
+                <hr> }
+
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="well">
+            <h4>Top autorzy:</h4>
+            <div class="cointainer">
+                <ul class="list-unstyled">
+                    @foreach (var author in Model.TopAuthors)
+                    {
+                        <li>
+                            @Html.ActionLink("" + @author.Key + " - " + @author.Value + " postów", "Index", "Author", new { name = @author.Key }, null)
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div class="well">
+            <h4>Najnowsze posty:</h4>
+            <div class="cointainer">
+                <ul class="list-unstyled">
+                    @foreach (var post in Model.NewPosts)
+                    {
+                        <li>
+                            @Html.ActionLink(@post.Title, "More", "Post", new { pageid = @post.IdPost }, null)
+                        </li>
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

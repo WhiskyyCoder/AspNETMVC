@@ -1,0 +1,50 @@
+﻿@model SimpleBlog.Views.Author.AuthorViewModel
+@{
+    ViewBag.Title = "O autorze: " + Model.author.Username;
+    ViewBag.Active = "";
+    ViewBag.Active2 = "";
+    Layout = "~/Views/Share/_Layout_Main.cshtml";
+}
+
+
+<div class="containter">
+    <h2><span class="glyphicon glyphicon-user"></span>Podstawowe informacje użytkownika @Model.author.Username :</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <td>Imie:</td>
+                <td>@Model.author.Name</td>
+            </tr>
+            <tr>
+                <td>Nazwisko:</td>
+                <td>@Model.author.Surname</td>
+            </tr>
+            <tr>
+                <td>Łączna ilość postów:</td>
+                <td>@Model.countPosts</td>
+            </tr>
+        </table>
+
+    </div>
+    <h2><span class="glyphicon glyphicon-list-alt"></span>Ostatnio napisane posty:</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>Tytuł</th>
+                <th>Data stworzenia</th>
+            </tr>
+            @foreach (var row in Model.posts)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@row.Title, "More", "Post", new { pageid = @row.IdPost }, null)</td>
+                    <td>@row.CreatedAt.Value.ToLongDateString()</td>
+                </tr>
+            }
+        </table>
+
+    </div>
+
+
+
+</div>
+
